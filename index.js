@@ -1,6 +1,31 @@
-function hasTargetSum(array, target) {
-  // Write your algorithm here
+function hasTargetSum(nums, target) {
+  // Create a hashmap to store elements and their complements
+  const hashmap = new Map();
+  
+  // Iterate through the array
+  for (let i = 0; i < nums.length; i++) {
+      const num = nums[i];
+      const complement = target - num;
+      
+      // Check if complement exists in the hashmap
+      if (hashmap.has(complement)) {
+          // If complement exists, a pair that adds up to the target is found
+          return true;
+      }
+      
+      // Add the current element to the hashmap
+      hashmap.set(num, true);
+  }
+  
+  // If no pair is found
+  return false;
 }
+
+// Example usage:
+const nums = [2, 7, 11, 15];
+const target = 9;
+console.log(hasTargetSum(nums, target)); // Output: true
+
 
 /* 
   Write the Big O time complexity of your function here
@@ -8,6 +33,9 @@ function hasTargetSum(array, target) {
 
 /* 
   Add your pseudocode here
+  loop through array or reduce
+
+  if two numbers in the array = the target return true
 */
 
 /*
